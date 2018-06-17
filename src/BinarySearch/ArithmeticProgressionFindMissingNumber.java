@@ -1,4 +1,4 @@
-//https://www.geeksforgeeks.org/find-missing-number-arithmetic-progression/
+package BinarySearch;//https://www.geeksforgeeks.org/find-missing-number-arithmetic-progression/
 
 public class ArithmeticProgressionFindMissingNumber {
 

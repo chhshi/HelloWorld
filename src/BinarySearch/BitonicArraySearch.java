@@ -1,4 +1,4 @@
-//https://www.geeksforgeeks.org/find-element-bitonic-array/
+package BinarySearch;//https://www.geeksforgeeks.org/find-element-bitonic-array/
 
 public class BitonicArraySearch {
 
