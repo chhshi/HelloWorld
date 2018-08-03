@@ -3,8 +3,13 @@ package BinarySearch;//https://www.geeksforgeeks.org/count-pairs-difference-equa
 
 public class CountDistinctPairsWithDiffK {
 
+    /**
+     *
+     * @param
+     * @return
+     */
     private static int add() {
-
+        return -1;
     }
 
     public static void main(String[] args) {
