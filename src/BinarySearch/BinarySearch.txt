@@ -1,0 +1,15 @@
+Binary Search
+
+#001	SearchInsertPosition
+#002	SearchA2dMatrix
+#003	SearchA2DMatrixII
+#004	FirstPositionOfTarget
+#005	LastPositionOfTarget
+#006	SearchForRange
+#007	ClosestNumberInSortedArray
+#008	KClosestNumbersInSortedArray
+#009	SearchInfinitedSortedArray
+#010	WoodCut
+#011	Sqrt
+#012	RotatedSortedArrayFindMinimum
+#013	RotatedSortedArraySearch  
