@@ -58,11 +58,40 @@ public class BinarySearchMisc {
     /**
      * * https://leetcode.com/problems/sqrtx/description/
      *
-     * @return
+     *  Compute and return the square root of x,
+     *  where x is guaranteed to be a non-negative integer.
+     *
+     * @return the square root of x
+     *
+     * sqrt(x) > x / 2  => x > x^2 / 4 => x < 4
+     * 只有x<4时候sqrt(x) > x / 2 => 除了x < 4的情况，都从x/2开始搜索
      */
-    private static int sqrt(int num) {
+    private static int sqrt(int x) {
 
-        return -1;
+        //check corner cases
+        if (x == 0) return 0;
+        if (x < 4) return 1;
+
+        //search 2 ~ x/2， 也可以不check，改进不大
+        int start = 2;
+        int end = x/2;
+
+        //check 3+ numbers
+        while (start + 1 < end) {
+            int mid = start + (end - start) / 2;
+            if (mid == x / mid) {     //mid * mid 会overflow  用除法判断
+                return mid;
+            } else if (mid < x / mid) {  //mid不可抛
+                start = mid;
+            } else {
+                end = mid - 1;
+            }
+        }
+
+        //check 2 or 1 elements
+        if (end <= x / end) return end;
+        return start;
+
     }
 
 
@@ -83,6 +112,13 @@ public class BinarySearchMisc {
         System.out.println(woodCut(new int[]{1,2,3,4,6,8}, 5) == 3);
         System.out.println(woodCut(new int[]{232, 124, 456}, 7) == 114);
         System.out.println(woodCut(new int[]{2147483644,2147483645,2147483646,2147483647}, 4) == 2147483644);
+
+        System.out.println("sqrt");
+        System.out.println(sqrt(3) == (int)Math.sqrt(3));
+        System.out.println(sqrt(4) == (int)Math.sqrt(4));
+        System.out.println(sqrt(80));
+        System.out.println(sqrt(0) == (int)Math.sqrt(0));
+
     }
 
 }
