@@ -47,6 +47,12 @@ public class RotatedSortedArray {
         return -1;
     }
 
+    /**
+     * https://leetcode.com/problems/search-in-rotated-sorted-array-ii/description/
+     * This is a follow up problem to Search in Rotated Sorted Array, where nums may contain duplicates.
+     *
+     * @return index of target value, otherwise return -1.
+     */
     private static void searchInRotatedSortedArrayWithDuplicate(int[] nums) {
 
     }
@@ -55,7 +61,21 @@ public class RotatedSortedArray {
 
     }
 
+    /**
+     * https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/
+     *
+     * @return minimum element value
+     */
     private static void findMinInRotatedSortedArray(int[] nums) {
+
+    }
+
+    /**
+     * https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/description/
+     *
+     * @return minimum element value
+     */
+    private static void findMinInRotatedSortedArrayWithDuplicates(int[] nums) {
 
     }
 
