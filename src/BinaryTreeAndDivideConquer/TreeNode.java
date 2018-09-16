@@ -2,11 +2,11 @@ package BinaryTreeAndDivideConquer;
 
 import java.util.*;
 
-public class BinaryTreeNode {
+public class TreeNode {
     int val;
-    BinaryTreeNode left;
-    BinaryTreeNode right;
-    BinaryTreeNode(int x) {
+    TreeNode left;
+    TreeNode right;
+    TreeNode(int x) {
         this.val = x;
     }
 
@@ -14,14 +14,14 @@ public class BinaryTreeNode {
     public String toString() {
 //        if (this == null) return "[]";    //this == null is always false
         StringBuilder sb = new StringBuilder("[");
-        Queue<BinaryTreeNode> queue = new LinkedList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(this);
         sb.append(this.val);
 
         while (!queue.isEmpty()) {
             int size = queue.size();
             for (int i = 0; i < size; i++) {
-                BinaryTreeNode node = queue.poll();
+                TreeNode node = queue.poll();
                 if (node.left != null) {
                     queue.offer(node.left);
                     sb.append(",").append(node.left.val);
@@ -45,14 +45,14 @@ public class BinaryTreeNode {
         List<Integer> list = new ArrayList<>();
 //        if (this == null) return list;  //this == null is always false
 
-        Queue<BinaryTreeNode> queue = new LinkedList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(this);
         list.add(this.val);
 
         while (!queue.isEmpty()) {
             int size = queue.size();
             for (int i = 0; i < size; i++) {
-                BinaryTreeNode node = queue.poll();
+                TreeNode node = queue.poll();
                 if (node.left != null) {
                     queue.offer(node.left);
                     list.add(node.left.val);
@@ -83,7 +83,7 @@ public class BinaryTreeNode {
      *
      * @return root node
      */
-    protected static BinaryTreeNode constructBinaryTreeFromPreorderAndInorderTraversal(int[] perorder, int[] inorder) {
+    protected static TreeNode constructBinaryTreeFromPreorderAndInorderTraversal(int[] perorder, int[] inorder) {
         return null;
     }
 
@@ -96,7 +96,7 @@ public class BinaryTreeNode {
      *
      * O(n) time, O(n) space
      */
-    protected static BinaryTreeNode constructBinaryTreeFromInorderAndPostorderTraversal(int[] inorder, int[] postorder) {
+    protected static TreeNode constructBinaryTreeFromInorderAndPostorderTraversal(int[] inorder, int[] postorder) {
         //check null or empty or corner case
         if (inorder == null || postorder == null
                 || inorder.length == 0 || postorder.length == 0
@@ -111,7 +111,7 @@ public class BinaryTreeNode {
 
         return constructHelper1(inorder, 0, inorder.length - 1, postorder, 0, postorder.length - 1, map);
     }
-    private static BinaryTreeNode constructHelper1(int[] inorder, int i, int j, int[] postorder, int p, int q, Map<Integer, Integer> map) {
+    private static TreeNode constructHelper1(int[] inorder, int i, int j, int[] postorder, int p, int q, Map<Integer, Integer> map) {
         int rootVal = postorder[q];
 //        int rootIdx = findRootIdx(inorder, i, j, rootVal);
 //        if (rootIdx < 0) return null;
@@ -119,7 +119,7 @@ public class BinaryTreeNode {
         int leftLen = rootIdx - i;
         int rightLen = j - rootIdx;
 
-        BinaryTreeNode root = new BinaryTreeNode(rootVal);
+        TreeNode root = new TreeNode(rootVal);
         if (leftLen > 0) {
             root.left = constructHelper1(inorder, i, rootIdx - 1, postorder, p, p + leftLen - 1, map);
         }
@@ -138,36 +138,41 @@ public class BinaryTreeNode {
     }
 
 
-    protected static BinaryTreeNode constructBinaryTreeFromBFSTraversal(List<Integer> input) {
+    /**
+     *  因为要存null代表中间空节点，所以选用List而不是array
+     *  因为要遍历，所有用 Iterator
+     *  因为从BFS遍历来构建，所以用Queue，且不要往Queue里插null
+     */
+    protected static TreeNode constructBinaryTreeFromBFSTraversal(List<Integer> input) {
         if (input == null || input.size() == 0) {
             return null;
         }
         Iterator<Integer> iter = input.iterator();
         Integer value = iter.next();
-        BinaryTreeNode root;
+        TreeNode root;
         if (value != null) {
-            root = new BinaryTreeNode(value);
+            root = new TreeNode(value);
         } else {
             return null;
         }
         //Make sure -NEVER- offer null into a Queue
-        Queue<BinaryTreeNode> queue = new LinkedList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
         while (iter.hasNext() && !queue.isEmpty()) {
             int qSize = queue.size();
             for (int i = 0; i < qSize; i++) {
-                BinaryTreeNode node = queue.poll();
+                TreeNode node = queue.poll();
                 if (iter.hasNext()) {
                     Integer val = iter.next();
                     if (val != null) {
-                        node.left = new BinaryTreeNode(val);
+                        node.left = new TreeNode(val);
                         queue.offer(node.left);
                     }
                 }
                 if (iter.hasNext()) {
                     Integer val = iter.next();
                     if (val != null) {
-                        node.right = new BinaryTreeNode(val);
+                        node.right = new TreeNode(val);
                         queue.offer(node.right);
                     }
                 }

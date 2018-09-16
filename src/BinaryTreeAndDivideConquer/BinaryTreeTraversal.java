@@ -23,13 +23,13 @@ public class BinaryTreeTraversal {
     // iterative solution:
     // Visit + go left & push right until no more nodes, then pop a right node as new root. ONLY Push right
     // right最后，root在left之前，所以一路先visit并往left走，并保存right
-    private static List<Integer> preOrderIterative(BinaryTreeNode root) {
+    private static List<Integer> preOrderIterative1(TreeNode root) {
 
         List<Integer> result = new ArrayList<>();
         if (root == null) return result;
 
-        Stack<BinaryTreeNode> stack = new Stack<>();
-        BinaryTreeNode curr = root;
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode curr = root;
         while (curr != null || !stack.empty()) {
             if (curr != null) {
                 result.add(curr.val);                               //visit
@@ -42,7 +42,22 @@ public class BinaryTreeTraversal {
         return result;
     }
 
-    private static List<Integer> preOrderDivideConquer(BinaryTreeNode root) {
+    //直接用stack替换system stack的实现方法，非常好理解！！
+    private static List<Integer> preOrderIterative2(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        if (root == null)  return result;
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.empty()) {
+            TreeNode node = stack.pop();
+            result.add(node.val);
+            if (node.right != null) stack.push(node.right);
+            if (node.left != null) stack.push(node.left);
+        }
+        return result;
+    }
+
+    private static List<Integer> preOrderDivideConquer(TreeNode root) {
         List<Integer> result = new ArrayList<>();
         //check null
         if (root == null)  return result;
@@ -56,12 +71,12 @@ public class BinaryTreeTraversal {
         return result;
     }
 
-    private static List<Integer> preOrderTraverse(BinaryTreeNode root) {
+    private static List<Integer> preOrderTraverse(TreeNode root) {
         List<Integer> result = new ArrayList<>();
         helper1(root, result);
         return result;
     }
-    private static void helper1(BinaryTreeNode root, List<Integer> result) {
+    private static void helper1(TreeNode root, List<Integer> result) {
         if (root == null) return;
         result.add(root.val);
         helper1(root.left, result);
@@ -83,12 +98,12 @@ public class BinaryTreeTraversal {
     // iterative solution:
     // push + go till left-most, then pop & visit it ; treat right as new root do the same thing;
     // right最后，root在left之后，所以只能借助stack来反向，先left走到底再开始pop+visit，每个root都被保存了不用保存right
-    private static List<Integer> inOrderIterative(BinaryTreeNode root) {
+    private static List<Integer> inOrderIterative(TreeNode root) {
         List<Integer> result = new ArrayList<>();
         if (root == null) return result;
 
-        Stack<BinaryTreeNode> stack = new Stack<>();
-        BinaryTreeNode curr = root;
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode curr = root;
         while (curr != null || !stack.empty()) {
             if (curr != null) {
                 stack.push(curr);   //keep push
@@ -102,7 +117,7 @@ public class BinaryTreeTraversal {
         return result;
     }
 
-    private static List<Integer> inOrderDivideConquer(BinaryTreeNode root) {
+    private static List<Integer> inOrderDivideConquer(TreeNode root) {
         List<Integer> result = new ArrayList<>();
         //check null
         if (root == null) return result;
@@ -116,12 +131,12 @@ public class BinaryTreeTraversal {
         return result;
     }
 
-    private static List<Integer> inOrderTraverse(BinaryTreeNode root) {
+    private static List<Integer> inOrderTraverse(TreeNode root) {
         List<Integer> result = new ArrayList<>();
         helper2(root, result);
         return result;
     }
-    private static void helper2(BinaryTreeNode root, List<Integer> result){
+    private static void helper2(TreeNode root, List<Integer> result){
         if (root == null) return;
         helper2(root.left, result);
         result.add(root.val);
@@ -145,20 +160,20 @@ public class BinaryTreeTraversal {
     // iterative solution:
     // push + go left-most, if stack-peek node has right & right NOT last-visited , treat right as new root
     // root在最后，root总是紧跟着right-subtree 的root被visit，所以要记录last visited node
-    private static List<Integer> postOrderIterative(BinaryTreeNode root) {
+    private static List<Integer> postOrderIterative(TreeNode root) {
         List<Integer> result = new ArrayList<>();
         if (root == null) return result;
 
-        Stack<BinaryTreeNode> stack = new Stack<>();
-        BinaryTreeNode curr = root;
-        BinaryTreeNode lastVisited = null;
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode curr = root;
+        TreeNode lastVisited = null;
 
         while (curr != null || !stack.empty()) {
             if (curr != null) {
                 stack.push(curr);
                 curr = curr.left;
             } else {
-                BinaryTreeNode peek = stack.peek();
+                TreeNode peek = stack.peek();
                 if (peek.right != null && peek.right != lastVisited) {
                     curr = peek.right;
                 } else {
@@ -171,7 +186,7 @@ public class BinaryTreeTraversal {
         return result;
     }
 
-    private static List<Integer> postOrderDivideConquer(BinaryTreeNode root) {
+    private static List<Integer> postOrderDivideConquer(TreeNode root) {
         List<Integer> result = new ArrayList<>();
         //check null
         if (root == null) return result;
@@ -185,12 +200,12 @@ public class BinaryTreeTraversal {
         return result;
     }
 
-    private static List<Integer> postOrderTraverse(BinaryTreeNode root) {
+    private static List<Integer> postOrderTraverse(TreeNode root) {
         List<Integer> result = new ArrayList<>();
         helper3(root, result);
         return result;
     }
-    private static void helper3(BinaryTreeNode root, List<Integer> result){
+    private static void helper3(TreeNode root, List<Integer> result){
         if (root == null) return;
         helper3(root.left, result);
         helper3(root.right, result);
