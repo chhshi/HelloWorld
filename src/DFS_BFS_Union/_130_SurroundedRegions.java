@@ -3,7 +3,7 @@ package DFS_BFS_Union;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class _130SurroundedRegions {
+public class _130_SurroundedRegions {
 
   //DFS beats 100%
   //BFS exceeds time limit

@@ -42,6 +42,12 @@ public class Sorting {
     }
   }
 
+  /*
+  *
+  * Yay!!!!!!!!!!
+  * Be familiar with this: random picked pviot, swap to head, and do normal partition
+  *
+  * */
   private int partitionRandomSwapWithEnd(int[] nums, int start, int end) {
     int p = start + (int)(Math.random() * (end - start + 1));
     int pivotValue = nums[p];
