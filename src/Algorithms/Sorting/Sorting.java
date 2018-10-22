@@ -1,8 +1,6 @@
-package Sorting;
+package Algorithms.Sorting;
 
-import com.sun.tools.javac.util.Assert;
 import java.util.Arrays;
-import java.util.Random;
 
 public class Sorting {
 

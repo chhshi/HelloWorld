@@ -1,4 +1,4 @@
-package DFS_BFS_Union;
+package Algorithms.DFS_BFS_Union;
 
 import java.util.ArrayList;
 import java.util.List;

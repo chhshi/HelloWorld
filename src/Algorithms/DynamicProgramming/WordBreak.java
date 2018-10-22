@@ -1,4 +1,4 @@
-package DynamicProgramming;
+package Algorithms.DynamicProgramming;
 
 import java.math.BigInteger;
 import java.util.Collections;
