@@ -1,5 +1,7 @@
 package Algorithms.DynamicProgramming;
 
+import java.util.List;
+
 public class UniquePaths {
 
 
@@ -138,6 +140,72 @@ public class UniquePaths {
     }
     return Math.min(a,b);
   }
+
+  /**
+   * Given a m x n grid filled with non-negative numbers,
+   * find a path from top left to bottom right which minimizes the sum of all numbers along its path.
+   *
+   * Note: You can only move either down or right at any point in time.
+   */
+  public int minPathSum(int[][] grid) {
+    int m = grid.length;
+    if (m == 0) return 0;
+    int n = grid[0].length;
+    if (n == 0) return 0;
+
+    int[] f = new int[n];
+    f[0] = grid[0][0];
+    for (int j = 1; j < n; j++) {
+      f[j] = f[j - 1] + grid[0][j];
+    }
+
+
+    for (int i = 1; i < m; i++) {
+      f[0] = f[0] + grid[i][0];
+      for (int j = 1; j < n; j++) {
+        f[j] = Math.min(f[j], f[j - 1]) + grid[i][j];
+      }
+    }
+    return f[n - 1];
+  }
+
+  /**
+   *
+   * https://leetcode.com/problems/triangle/description/
+   *
+   * Given a triangle, find the minimum path sum from top to bottom. Each step you may move to adjacent numbers on the row below.
+   *
+   * For example, given the following triangle
+   * [
+   *      [2],
+   *     [3,4],
+   *    [6,5,7],
+   *   [4,1,8,3]
+   * ]
+   * The minimum path sum from top to bottom is 11 (i.e., 2 + 3 + 5 + 1 = 11).
+   */
+  public int minimumTotal(List<List<Integer>> triangle) {
+    int m = triangle.size();
+    if (m == 0) return 0;
+
+    int[] f = new int[m];
+
+    //从最后一行往上走，好处是只用一维array就够了，可以不停覆盖。反过来不行。
+    for (int i = m -1; i >= 0; i--) {
+      //加速：不要每次都triangle.get().get()
+      List<Integer> row = triangle.get(i);
+      for (int j = 0; j <= i; j++) {
+        if (i == m - 1) {
+          f[j] = row.get(j);
+        } else {
+          f[j] = Math.min(f[j], f[j + 1]) + row.get(j);
+        }
+      }
+    }
+    return f[0];
+  }
+
+
 }
 
 class main {
