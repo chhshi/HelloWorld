@@ -3,6 +3,8 @@ package EffectiveJava.Item3_Singleton;
 import java.lang.reflect.Constructor;
 
 
+
+
 /**
  * An advanced user can change the private access modifier of the constructor to anything they want at runtime using reflection.
  * If this happens, our only mechanism for non-instantiability breaks.

@@ -8,6 +8,18 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 
+/**
+ * Serialization refers to a process of converting an object into a format which can be persisted to disk
+ * (for example saved to a file or a datastore), sent through streams (for example stdout), or sent over a network.
+ * The format in which an object is serialized into, can either be binary or structured text (for example XML, JSON YAML…).
+ * JSON and XML are two of the most commonly used serialization formats within web applications.
+ *
+ * Deserialization on the other hand, is the opposite of serialization,
+ * that is, transforming serialized data coming from a file, stream or network socket into an object.
+ *
+ *
+ */
+
 class Singleton {
   public static final Singleton INSTANCE = new Singleton();
   private int value;
