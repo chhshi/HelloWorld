@@ -15,7 +15,7 @@ public class Sorting {
   }
   private void quickSortRecursion(int[] nums, int start, int end) {
     if (start >= end) return;
-    int idx = partitionRandomSwapWithEnd(nums, start, end);
+    int idx = partitionRandomPivot(nums, start, end);
     quickSortRecursion(nums, start, idx - 1);
     quickSortRecursion(nums, idx + 1, end);
   }
@@ -67,6 +67,24 @@ public class Sorting {
       }
     }
     return p;
+  }
+
+  private int partitionRandomPivot(int[] nums, int start, int end) {
+    int p = start + (int)(Math.random() * (end - start + 1));
+    int pivot = nums[p];
+    swap(nums, p, end);
+    int left = start, right = end - 1;
+    while (left <= right) {
+      while (left <= right && nums[left] < pivot) left++;
+      while (left <= right && nums[right] >= pivot) right--;
+      if (left < right) {
+        swap(nums, left, right);
+        left++;
+        right--;
+      }
+    }
+    swap(nums, left, end);
+    return left;
   }
 
   private void swap(int[] nums, int left, int right) {
